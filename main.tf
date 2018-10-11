@@ -1,9 +1,3 @@
-# # Find this subnet IPs
-# data "aws_subnet" "this_subnet" {
-#   count = "${length(var.private_subnet_ids)}"
-#   id = "${var.private_subnet_ids[count.index]}"
-# }
-
 # Find this VPC CIDR Block
 data "aws_vpc" "this_vpc" {
   id = "${var.vpc_id}"
