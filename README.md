@@ -47,7 +47,7 @@ EOF
 
 module "instance" {
   name   = "dev01"
-  source = "git@github.com:sailthru/terraform-ec2-instance-base"
+  source = "git@github.com:sailthru/terrafrom-aws-ec2-instance-base.git"
   default_keypair        = "default"
   vpc_id                 = "vpc-1a2b3d4d"
   private_subnet_ids     = ["subnet-eddcdzz4"]
