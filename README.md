@@ -56,6 +56,7 @@ module "instance" {
   cloud_config           = "${var.cloud_config}"
   cloud_config_users     = "${var.cloud_config_users}"
 ```
+}
 
 ## Inputs
 
