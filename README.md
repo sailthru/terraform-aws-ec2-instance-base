@@ -56,9 +56,6 @@ module "instance" {
   cloud_config_users     = "${var.cloud_config_users}"
 ```
 
-## Examples
-Example of 
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
