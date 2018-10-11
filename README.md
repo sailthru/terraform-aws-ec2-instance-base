@@ -1,11 +1,12 @@
 # AWS EC2 Instance Base Terrafrom Module
-Terraform module which is use as a base to create EC2 instance(s) on AWS
+Terraform module which is used as a base to create EC2 instance(s) on AWS
 The module performs the following functionality:
 - Looks-up AMI ID
 - Creates default security group
 - Creates instance IAM Role with policy ARN attachments
 - Generates cloud-init userdata
 - Default tags
+- Launches instance(s)
 
 ## Usage
 
