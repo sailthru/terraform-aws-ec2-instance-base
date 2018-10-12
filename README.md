@@ -55,9 +55,8 @@ module "instance" {
   vpc_security_group_ids = ["sg-12345678"]
   cloud_config           = "${var.cloud_config}"
   cloud_config_users     = "${var.cloud_config_users}"
-```
-
 }
+```
 
 ## Inputs
 
