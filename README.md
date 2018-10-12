@@ -15,7 +15,6 @@ The module performs the following functionality:
 ```hcl
 variable "cloud_config" {
   default = <<EOF
-#cloud-config
 
 repo_update: true
 repo_upgrade: all
