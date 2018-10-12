@@ -59,7 +59,8 @@ data "template_file" "cloud_config_users" {
 ```hcl
 module "instance" {
   name   = "dev01"
-  source = "git@github.com:sailthru/terrafrom-aws-ec2-instance-base.git"
+  source  = "sailthru/ec2-instance-base/aws"
+  version = "0.0.1"
   default_keypair        = "default"
   vpc_id                 = "vpc-1a2b3d4d"
   private_subnet_ids     = ["subnet-eddcdzz4"]
