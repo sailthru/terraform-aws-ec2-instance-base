@@ -106,8 +106,6 @@ module "instance" {
 | vpc_id | AWS VPC ID | string | - | yes |
 | vpc_security_group_ids | List of VPC security group ID's to attach to the instance | list | `<list>` | no |
 
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
 ## Outputs
 
 | Name | Description |
@@ -126,6 +124,8 @@ module "instance" {
 | subnet_id | List of IDs of VPC subnets of instances |
 | tags | List of tags of instances |
 | vpc_security_group_ids | List of associated security groups of instances, if running in non-default VPC |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Authors
 
