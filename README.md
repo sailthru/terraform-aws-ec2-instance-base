@@ -13,6 +13,20 @@ The module performs the following functionality:
 ## Usage
 
 ```hcl
+module "instance" {
+  name   = "dev01"
+  source = "git@github.com:sailthru/terrafrom-aws-ec2-instance-base.git"
+  default_keypair        = "default"
+  vpc_id                 = "vpc-1a2b3d4d"
+  private_subnet_ids     = ["subnet-eddcdzz4"]
+  private_ips            = ["10.54.5.10"]
+  vpc_security_group_ids = ["sg-12345678"]
+  cloud_config           = "${var.cloud_config}"
+  cloud_config_users     = "${var.cloud_config_users}"
+}
+```
+
+```hcl
 variable "cloud_config" {
   default = <<EOF
 
@@ -33,6 +47,9 @@ runcmd:
   - systemctl restart dnsmasq
 EOF
 }
+```
+
+```hcl
 variable "cloud_config_users" {
   default = <<EOF
 users:
@@ -44,18 +61,6 @@ users:
     ssh_authorized_keys:
       - ssh-rsa AAAAB..................
 EOF
-}
-
-module "instance" {
-  name   = "dev01"
-  source = "git@github.com:sailthru/terrafrom-aws-ec2-instance-base.git"
-  default_keypair        = "default"
-  vpc_id                 = "vpc-1a2b3d4d"
-  private_subnet_ids     = ["subnet-eddcdzz4"]
-  private_ips            = ["10.54.5.10"]
-  vpc_security_group_ids = ["sg-12345678"]
-  cloud_config           = "${var.cloud_config}"
-  cloud_config_users     = "${var.cloud_config_users}"
 }
 ```
 
