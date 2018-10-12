@@ -12,23 +12,8 @@ The module performs the following functionality:
 
 ## Usage
 
-```hcl
-module "instance" {
-  name   = "dev01"
-  source = "git@github.com:sailthru/terrafrom-aws-ec2-instance-base.git"
-  default_keypair        = "default"
-  vpc_id                 = "vpc-1a2b3d4d"
-  private_subnet_ids     = ["subnet-eddcdzz4"]
-  private_ips            = ["10.54.5.10"]
-  vpc_security_group_ids = ["sg-12345678"]
-  cloud_config           = "${var.cloud_config}"
-  cloud_config_users     = "${var.cloud_config_users}"
-}
-```
-
-```hcl
-variable "cloud_config" {
-  default = <<EOF
+```yaml
+#templates/cloud_config.tpl
 
 repo_update: true
 repo_upgrade: all
@@ -45,22 +30,43 @@ runcmd:
   - systemctl daemon-reload
   - systemctl enable dnsmasq
   - systemctl restart dnsmasq
-EOF
+```
+
+```hcl
+data "template_file" "cloud_config" {
+  template = "${file("${path.module}/templates/cloud_config.tpl")}"
+}
+```
+
+```yaml
+#templates/cloud_config_users.tpl
+users:
+  - default
+  - name: ansible
+    gecos: Ansible User
+    groups: wheel
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB.................
+```
+
+```hcl
+data "template_file" "cloud_config_users" {
+  template = "${file("${path.module}/templates/cloud_config_users.tpl")}"
 }
 ```
 
 ```hcl
-variable "cloud_config_users" {
-  default = <<EOF
-users:
-  - default
-  - name: deploy
-    gecos: deploy
-    groups: wheel
-    sudo: ALL=(ALL) NOPASSWD:ALL
-    ssh_authorized_keys:
-      - ssh-rsa AAAAB..................
-EOF
+module "instance" {
+  name   = "dev01"
+  source = "git@github.com:sailthru/terrafrom-aws-ec2-instance-base.git"
+  default_keypair        = "default"
+  vpc_id                 = "vpc-1a2b3d4d"
+  private_subnet_ids     = ["subnet-eddcdzz4"]
+  private_ips            = ["10.54.5.10"]
+  vpc_security_group_ids = ["sg-12345678"]
+  cloud_config           = "${data.template_file.cloud_config.rendered}"
+  cloud_config_users     = "${data.template_file.cloud_config_users.rendered}"
 }
 ```
 
