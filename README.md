@@ -1,6 +1,8 @@
 # AWS EC2 Instance Base Terrafrom Module
+
 Terraform module which is used as a base to create EC2 instance(s) on AWS
 The module performs the following functionality:
+
 - Looks-up AMI ID
 - Creates default security group
 - Creates instance IAM Role with policy ARN attachments
@@ -10,7 +12,7 @@ The module performs the following functionality:
 
 ## Usage
 
-```
+```hcl
 variable "cloud_config" { 
   default = <<EOF
 #cloud-config
@@ -55,9 +57,8 @@ module "instance" {
   vpc_security_group_ids = ["sg-12345678"]
   cloud_config           = "${var.cloud_config}"
   cloud_config_users     = "${var.cloud_config_users}"
-```
-
 }
+```
 
 ## Inputs
 
@@ -121,7 +122,6 @@ module "instance" {
 | subnet_id | List of IDs of VPC subnets of instances |
 | tags | List of tags of instances |
 | vpc_security_group_ids | List of associated security groups of instances, if running in non-default VPC |
-
 
 ## Authors
 
