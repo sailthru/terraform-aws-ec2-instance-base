@@ -10,7 +10,7 @@ The module performs the following functionality:
 
 ## Usage
 
-```
+```hcl
 variable "cloud_config" { 
   default = <<EOF
 #cloud-config
