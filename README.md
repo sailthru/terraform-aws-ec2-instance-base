@@ -60,6 +60,8 @@ module "instance" {
 }
 ```
 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -103,6 +105,8 @@ module "instance" {
 | volume_tags | A mapping of tags to assign to the devices created by the instance at launch time | map | `<map>` | no |
 | vpc_id | AWS VPC ID | string | - | yes |
 | vpc_security_group_ids | List of VPC security group ID's to attach to the instance | list | `<list>` | no |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Outputs
 
