@@ -8,7 +8,7 @@ The module performs the following functionality:
 - Creates instance IAM Role with policy ARN attachments
 - Generates cloud-init userdata
 - Default tags
-- Launches instance(s)
+- Launches instance
 
 ## Usage
 
@@ -63,8 +63,8 @@ module "instance" {
   version = "0.0.1"
   default_keypair        = "default"
   vpc_id                 = "vpc-1a2b3d4d"
-  private_subnet_ids     = ["subnet-eddcdzz4"]
-  private_ips            = ["10.54.5.10"]
+  subnet_id              = "subnet-eddcdzz4"
+  private_ip             = "10.54.5.10"
   vpc_security_group_ids = ["sg-12345678"]
   cloud_config           = "${data.template_file.cloud_config.rendered}"
   cloud_config_users     = "${data.template_file.cloud_config_users.rendered}"
@@ -107,8 +107,8 @@ module "instance" {
 | monitoring | If true, the launched EC2 instance will have detailed monitoring enabled | string | `false` | no |
 | name | Resource name. This will be used as a tag prefix | string | - | yes |
 | placement_group | The Placement Group to start the instance in | string | `` | no |
-| private_ips | List of private Ips to assign instances. Must match aws_private_subnet_ids network | list | `<list>` | no |
-| private_subnet_ids | List of private subnets to launch instnaces in | list | `<list>` | no |
+| private_ip | Private Ip to assign instances. Must match aws_private_subnet_id network | string | `` | no |
+| subnet_id | subnet to launch instnace in | string | `` | no |
 | root_block_device | Customize details about the root block device of the instance. See Block Devices below for details | list | `<list>` | no |
 | source_dest_check | Controls if traffic is routed to the instance when the destination address does not match the instance. Used for NAT or VPNs. | string | `true` | no |
 | tags | Additional instance tags | map | `<map>` | no |
