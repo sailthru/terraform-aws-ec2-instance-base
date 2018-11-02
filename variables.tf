@@ -38,9 +38,9 @@ variable "ami_id" {
   default = ""
 }
 
-variable "private_subnet_ids" {
+variable "private_subnet_id" {
   description = "List of private subnets to launch instnaces in"
-  default = []
+  default = ""
 }
 
 variable "tags" {
@@ -98,10 +98,9 @@ variable "source_dest_check" {
   default     = true
 }
 
-variable "private_ips" {
-  description = "List of private Ips to assign instances. Must match aws_private_subnet_ids network"
-  default     = []
-  type        = "list"
+variable "private_ip" {
+  description = "rivate IP to assign instances. Must match aws_private_subnet_id network"
+  default     = ""
 }
 
 variable "volume_tags" {

@@ -84,11 +84,10 @@ data "template_cloudinit_config" "cloud-init" {
 
 # Launch instances
 resource "aws_instance" "this" {
-  count                  = "${length(var.private_subnet_ids)}"
   ami                    = "${ var.ami_id == "" ? data.aws_ami.this_ami.id : var.ami_id}"
   instance_type          = "${var.instance_type}"
   user_data              = "${data.template_cloudinit_config.cloud-init.rendered}"
-  subnet_id              = "${var.private_subnet_ids[count.index]}"
+  subnet_id              = "${var.private_subnet_id}"
   key_name               = "${var.default_keypair}"
   vpc_security_group_ids = ["${
     sort(
@@ -103,7 +102,7 @@ resource "aws_instance" "this" {
   iam_instance_profile   = "${aws_iam_instance_profile.this_instance_profile.id}"
   tags                   = "${ merge(local.default_tags, var.tags) }"
   associate_public_ip_address          = "${var.associate_public_ip_address}"
-  private_ip                           = "${var.private_ips[count.index]}"
+  private_ip                           = "${var.private_ip}"
   source_dest_check                    = "${var.source_dest_check}"
   disable_api_termination              = "${var.disable_api_termination}"
   instance_initiated_shutdown_behavior = "${var.instance_initiated_shutdown_behavior}"
