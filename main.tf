@@ -62,6 +62,7 @@ module "instance_default_sg" {
   egress_rules             = "${var.egress_rules}"
   ingress_with_cidr_blocks = "${var.ingress_with_cidr_blocks}"
   egress_with_cidr_blocks  = "${var.egress_with_cidr_blocks}"
+  tags                     = "${ merge(local.default_tags, var.tags) }"
 }
 
 # Generate the cloud init
