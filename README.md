@@ -63,7 +63,7 @@ module "instance" {
   version = "0.0.1"
   default_keypair        = "default"
   vpc_id                 = "vpc-1a2b3d4d"
-  private_subnet_id      = "subnet-eddcdzz4"
+  subnet_id              = "subnet-eddcdzz4"
   private_ip             = "10.54.5.10"
   vpc_security_group_ids = ["sg-12345678"]
   cloud_config           = "${data.template_file.cloud_config.rendered}"
@@ -108,7 +108,7 @@ module "instance" {
 | name | Resource name. This will be used as a tag prefix | string | - | yes |
 | placement_group | The Placement Group to start the instance in | string | `` | no |
 | private_ip | Private Ip to assign instances. Must match aws_private_subnet_id network | string | `` | no |
-| private_subnet_id | private subnet to launch instnace in | string | `` | no |
+| subnet_id | subnet to launch instnace in | string | `` | no |
 | root_block_device | Customize details about the root block device of the instance. See Block Devices below for details | list | `<list>` | no |
 | source_dest_check | Controls if traffic is routed to the instance when the destination address does not match the instance. Used for NAT or VPNs. | string | `true` | no |
 | tags | Additional instance tags | map | `<map>` | no |

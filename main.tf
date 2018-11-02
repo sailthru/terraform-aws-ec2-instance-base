@@ -87,7 +87,7 @@ resource "aws_instance" "this" {
   ami                    = "${ var.ami_id == "" ? data.aws_ami.this_ami.id : var.ami_id}"
   instance_type          = "${var.instance_type}"
   user_data              = "${data.template_cloudinit_config.cloud-init.rendered}"
-  subnet_id              = "${var.private_subnet_id}"
+  subnet_id              = "${var.subnet_id}"
   key_name               = "${var.default_keypair}"
   vpc_security_group_ids = ["${
     sort(

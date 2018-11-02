@@ -38,8 +38,8 @@ variable "ami_id" {
   default = ""
 }
 
-variable "private_subnet_id" {
-  description = "List of private subnets to launch instnaces in"
+variable "subnet_id" {
+  description = "Subnets to launch instnaces in"
   default = ""
 }
 
