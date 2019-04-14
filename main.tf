@@ -6,6 +6,7 @@ data "aws_vpc" "this_vpc" {
 # Find Amazon Linux AMI
 data "aws_ami" "this_ami" {
   most_recent = true # Find and return the most recent match. \m/
+  owners = ["${var.ami_filter_owner-alias}"]
 
   filter {
     name = "name"
@@ -14,10 +15,6 @@ data "aws_ami" "this_ami" {
   filter {
     name = "virtualization-type"
     values = "${var.ami_filter_virtualization_type}"
-  }
-  filter {
-    name = "owner-alias"
-    values = "${var.ami_filter_owner-alias}"
   }
 }
 
